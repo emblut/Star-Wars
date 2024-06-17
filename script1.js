@@ -20,52 +20,45 @@ async function getObiInfo() {
 
 async function getPersonInfo() {
   const baseUrl = 'https://swapi.dev/api/people/?search=';
-  let textValue = textInput.value;
-  let person = '';
+  let queryString = textInput.value;
   let pronounce1 = '';
   let pronounce2 = '';
-  const result = await fetch(baseUrl + textValue);
+  let result = await fetch(baseUrl + queryString);
   let data = await result.json();
   data = data.results;
   console.log(data);
 
-  if (data.length > 0) {
+  if (data.length > 0 && textInput.value != 0) {
     for (let i = 0; i < data.length; i++) {
-      if (textValue == data[i].name) {
-        person = data[i];
-        console.log(person);
-        if (person.gender == 'male') {
-          pronounce1 = 'He';
-          pronounce2 = 'His';
-        } else if (person.gender == 'female') {
-          pronounce1 = 'She';
-          pronounce2 = 'Her';
-        } else if (person.gender == 'unknown') {
-          pronounce1 = 'They';
-          pronounce2 = 'Their';
-        } else if (person.gender == 'n/a') {
-          person.gender = 'creature';
-          pronounce1 = 'They';
-          pronounce2 = 'Their';
-          person.hair_color = 'none';
-        }
-        output.innerText = `
-        ${person.name} is a ${person.gender} who was born ${
-          person.birth_year
-        }. ${pronounce2} haircolor is ${
-          person.hair_color
-        } and ${pronounce2.toLowerCase()} eyecolor is ${
-          person.eye_color
-        }. ${pronounce1} weights ${person.mass}kg and is ${
-          person.height
-        }cm tall.
-      `;
-      } else {
-        output.innerText = "Sorry I didn't quite understand that. Try again!";
+      let person = data[i];
+      if (person.gender == 'male') {
+        pronounce1 = 'He';
+        pronounce2 = 'His';
+      } else if (person.gender == 'female') {
+        pronounce1 = 'She';
+        pronounce2 = 'Her';
+      } else if (person.gender == 'unknown') {
+        pronounce1 = 'They';
+        pronounce2 = 'Their';
+      } else if (person.gender == 'n/a') {
+        person.gender = 'creature';
+        pronounce1 = 'They';
+        pronounce2 = 'Their';
+        person.hair_color = 'none';
       }
+
+      output.innerText = `
+        ${person.name} is a ${person.gender} who was born ${
+        person.birth_year
+      }. ${pronounce2} haircolor is ${
+        person.hair_color
+      } and ${pronounce2.toLowerCase()} eyecolor is ${
+        person.eye_color
+      }. ${pronounce1} weights ${person.mass}kg and is ${person.height}cm tall.
+      `;
     }
   } else {
-    output.innerText = "Sorry I didn't quite understand that. Try again!";
+    output.innerText = 'Oops try again!';
   }
 }
 obiButton.addEventListener('click', getObiInfo);
