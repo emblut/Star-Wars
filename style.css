@@ -1,0 +1,61 @@
+* {
+  transition: all 0.3s linear;
+}
+body {
+  font-family: 'Poller One', serif;
+  text-align: center;
+  background: #04050a;
+  color: #ede53e;
+  font-size: 90%;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4em;
+}
+.column > * {
+  flex-basis: auto;
+}
+h1 {
+  font-size: 4rem;
+}
+input {
+  font-size: 1em;
+}
+.search-button {
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.4em 0.8em;
+  background: #850000;
+  color: #ffffff;
+}
+.search-button:hover {
+  opacity: 60;
+  background: #5c0606;
+  cursor: pointer;
+}
+.obi-wan-img {
+  width: 100%;
+}
+.obi-button {
+  border: none;
+  border-radius: 0.5em;
+  padding: 0;
+  background: #264ae9;
+  color: #ffffff;
+  width: 9rem;
+  height: 1.6rem;
+  margin: 1rem 0 3rem 0;
+}
+.obi-button:hover {
+  opacity: 60;
+  background: #172580;
+  cursor: pointer;
+}
+hr {
+  border-image: linear-gradient(45deg, #264ae9, #850000) 30;
+  border-style: solid;
+  border-width: 0.1em;
+  margin: 2em 0;
+}
